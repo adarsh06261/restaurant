@@ -806,7 +806,6 @@ nav svg {
   margin-bottom: 10px;
 }
 
-
 .who_are_we .image_banner {
   display: flex;
   justify-content: center;
@@ -814,12 +813,16 @@ nav svg {
   position: relative;
   margin: 30px 0;
   width: 100%;
-  transform: translateX(-350px); /* Adjust the value to shift left */
+  overflow: hidden; /* Hide overflowing parts */
 }
-.who_are_we .image_banner img.gradient.bg {
+
+.who_are_we .image_banner img.gradient_bg {
   position: absolute;
   width: 70%;
   max-width: 500px;
+  left: -100px; /* Adjust position for animation */
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  opacity: 0.7; /* Semi-transparent */
   z-index: 1;
 }
 
@@ -828,6 +831,7 @@ nav svg {
   z-index: 2;
   width: 100%;
   max-width: 500px;
+  transition: transform 0.5s ease-out;
 }
 
 @media (max-width: 768px) {
@@ -841,10 +845,14 @@ nav svg {
     margin-bottom: 20px;
   }
 
-  .who_are_we .image_banner img.gradient.bg,
+  .who_are_we .image_banner img.gradient_bg,
   .who_are_we .image_banner img[alt="who"] {
     width: 90%;
     max-width: 300px;
+  }
+
+  .who_are_we .image_banner img.gradient_bg {
+    left: 0; /* Adjust position for smaller screens */
   }
 }
 

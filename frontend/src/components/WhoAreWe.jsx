@@ -1,5 +1,5 @@
 import React from 'react';
-import {data} from '../restApi.json';
+import { data } from '../restApi.json';
 
 const WhoAreWe = () => {
   return (
@@ -9,21 +9,21 @@ const WhoAreWe = () => {
         <div className="text_banner">
           {data[0].who_are_we.slice(0, 2).map(element => (
             <div className="card" key={element.id}>
-              <h1 style={{ fontWeight: "500" }} className='heading'>{element.number}</h1>
+              <h1 className='heading'>{element.number}</h1>
               <p>{element.title}</p>
             </div>
           ))}
         </div>
 
         <div className="image_banner">
-          <img src="/center.svg" alt="center" className='gradient.bg' />
+          <img src="/center.svg" alt="center" className='gradient_bg' />
           <img src="/whoweare.png" alt="who" />
         </div>
 
         <div className="text_banner">
           {data[0].who_are_we.slice(2, 4).map(element => (
             <div className="card" key={element.id}>
-              <h1 style={{ fontWeight: "500" }} className='heading'>{element.number}</h1>
+              <h1 className='heading'>{element.number}</h1>
               <p>{element.title}</p>
             </div>
           ))}

@@ -1,7 +1,6 @@
-// ./controller/reservation.js
-
 import ErrorHandler from "../middlewares/error.js";
 import { Reservation } from "../models/reservation.js";
+import mongoose from 'mongoose';
 
 const send_reservation = async (req, res, next) => {
   const { firstName, lastName, email, date, time, phone } = req.body;
@@ -11,15 +10,21 @@ const send_reservation = async (req, res, next) => {
   }
 
   try {
-    // Check if reservation already exists with the same phone number or email
+    // Check if reservation already exists with the same phone number or email within a 2-hour window
+    const reservationDateTime = new Date(`${date}T${time}`);
+    const twoHoursBefore = new Date(reservationDateTime.getTime() - 2 * 60 * 60 * 1000);
+    const twoHoursAfter = new Date(reservationDateTime.getTime() + 2 * 60 * 60 * 1000);
+
     const existingReservation = await Reservation.findOne({
-      $or: [{ phone }, { email }],
+      email,
+      date,
+      time: { $gte: twoHoursBefore, $lte: twoHoursAfter }
     });
 
     if (existingReservation) {
       return res.status(400).json({
         success: false,
-        message: "Reservation already exists with this phone number or email.",
+        message: "Reservation already exists with this email for the same date and time within a 2-hour window.",
       });
     }
 
