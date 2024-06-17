@@ -952,9 +952,10 @@ footer .container .banner .right {
 
 .reservation .container {
   max-width: 1500px;
-  min-width: 1500px;
   display: flex;
   gap: 30px;
+  flex-wrap: wrap; /* Added for responsiveness */
+  justify-content: center; /* Added for centering on smaller screens */
 }
 
 /* Banner styling */
@@ -967,7 +968,8 @@ footer .container .banner .right {
 }
 
 .reservation .container .banner img {
-  width: 550px;
+  max-width: 100%;
+  height: auto;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
@@ -979,7 +981,8 @@ footer .container .banner .right {
 
 /* Form box styling */
 .reservation .container .banner .reservation_form_box {
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   background: #fff;
   padding: 30px;
   border-radius: 12px;
@@ -1012,10 +1015,11 @@ footer .container .banner .right {
   display: flex;
   gap: 25px;
   margin-bottom: 20px;
+  flex-wrap: wrap; /* Added for responsiveness */
 }
 
 .reservation .container .banner .reservation_form_box form input {
-  flex: 1;
+  flex: 1 1 40%; /* Adjusted for better responsiveness */
   padding: 10px;
   font-size: 16px;
   font-weight: 300;
@@ -1063,6 +1067,8 @@ footer .container .banner .right {
   background: #111;
   border-radius: 50%;
   color: #fff;
+  display: inline-flex; /* Added for better alignment */
+  align-items: center; /* Added for better alignment */
 }
 
 .reservation .container .banner .reservation_form_box form button:hover {
@@ -1072,7 +1078,7 @@ footer .container .banner .right {
 /* Responsive styling */
 @media (max-width: 1520px) {
   .reservation .container {
-    min-width: 100%;
+    max-width: 100%;
   }
 }
 
@@ -1111,16 +1117,25 @@ footer .container .banner .right {
   .reservation .container .banner .reservation_form_box {
     width: 100%;
   }
-  .reservation .container .banner .reservation_form_box h1 {
-    font-size: 2rem;
+  .reservation .container .banner .reservation_form_box form {
+    padding: 0 15px;
   }
 }
 
-@media (max-width: 325px) {
-  .reservation .container .banner .reservation_form_box h1 {
-    font-size: 1.6rem;
+@media (max-width: 360px) {
+  .reservation .container .banner .reservation_form_box form button {
+    padding: 12px 24px;
+    font-size: 14px;
   }
 }
+
+@media (max-width: 320px) {
+  .reservation .container .banner .reservation_form_box form button {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+}
+
 
 /**********************************************************************************************************************/
 

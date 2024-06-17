@@ -33,6 +33,10 @@ const reservationSchema = new mongoose.Schema({
     minLength: [10, "Phone number must contain 10 digits."],
     maxLength: [10, "Phone number must contain 10 digits."],
   },
+  restaurantName: {
+    type: String,
+    required: true,
+  },
 });
 
 export const Reservation = mongoose.model("Reservation", reservationSchema);

@@ -1,35 +1,39 @@
 import ErrorHandler from "../middlewares/error.js";
 import { Reservation } from "../models/reservation.js";
-import mongoose from 'mongoose';
 
 const send_reservation = async (req, res, next) => {
-  const { firstName, lastName, email, date, time, phone } = req.body;
+  const { firstName, lastName, email, date, time, phone, restaurantName } = req.body;
 
-  if (!firstName || !lastName || !email || !date || !time || !phone) {
+  if (!firstName || !lastName || !email || !date || !time || !phone ) {
     return next(new ErrorHandler("Please fill out the complete reservation form!", 400));
   }
 
   try {
-    // Check if reservation already exists with the same phone number or email within a 2-hour window
-    const reservationDateTime = new Date(`${date}T${time}`);
-    const twoHoursBefore = new Date(reservationDateTime.getTime() - 2 * 60 * 60 * 1000);
-    const twoHoursAfter = new Date(reservationDateTime.getTime() + 2 * 60 * 60 * 1000);
-
-    const existingReservation = await Reservation.findOne({
-      email,
+    // Check if restaurant is fully booked at the given time
+    const existingReservationsCount = await Reservation.countDocuments({
+      restaurantName,
       date,
-      time: { $gte: twoHoursBefore, $lte: twoHoursAfter }
+      time
+    });
+
+    if (existingReservationsCount >= 20) {
+      return next(new ErrorHandler(`Sorry, ${restaurantName} is fully booked at ${time} on ${date}. Please choose another time or restaurant.`, 400));
+    }
+
+    // Check if user has already made a reservation at the same time
+    const existingReservation = await Reservation.findOne({
+      $or: [
+        { email, date, time },
+        { phone, date, time }
+      ]
     });
 
     if (existingReservation) {
-      return res.status(400).json({
-        success: false,
-        message: "Reservation already exists with this email for the same date and time within a 2-hour window.",
-      });
+      return next(new ErrorHandler(`You have already made a reservation at ${time} on ${date}. Please choose another time or contact us for assistance.`, 400));
     }
 
-    // If no existing reservation found, create a new one
-    await Reservation.create({ firstName, lastName, email, date, time, phone });
+    // Create a new reservation
+    await Reservation.create({ firstName, lastName, email, date, time, phone, restaurantName });
 
     res.status(201).json({
       success: true,

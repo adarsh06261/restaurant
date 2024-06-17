@@ -3,6 +3,7 @@ import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import Select from 'react-select';
 
 const Reservation = () => {
   const [firstName, setFirstName] = useState("");
@@ -11,14 +12,26 @@ const Reservation = () => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [phone, setPhone] = useState("");
+  const [restaurantName, setRestaurantName] = useState("");
   const navigate = useNavigate();
+
+  const restaurants = [
+    { value: '1', label: 'Urvashi Restaurant' },
+    { value: '2', label: 'Backyard' },
+    { value: '3', label: 'Munna ka Dhaba' },
+    { value: '4', label: 'Hotel Sahil' },
+    { value: '5', label: 'Purnima Ka Chand' },
+    { value: '6', label: 'Chandni Hotel' },
+    { value: '7', label: 'Infinite is not Defined ?' },
+    { value: '8', label: 'Akar bakar Assi Nubbe Hotel' },
+  ];
 
   const handleReservation = async (e) => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
         "http://localhost:4000/api/v1/reservation/send",
-        { firstName, lastName, email, phone, date, time },
+        { firstName, lastName, email, phone, date, time, restaurantName },
         {
           headers: {
             "Content-Type": "application/json",
@@ -33,6 +46,7 @@ const Reservation = () => {
       setPhone("");
       setDate("");
       setTime("");
+      setRestaurantName("");
       navigate("/success");
     } catch (error) {
       toast.error(error.response.data.message);
@@ -93,6 +107,18 @@ const Reservation = () => {
                   onChange={(e) => setPhone(e.target.value)}
                 />
               </div>
+              <div>
+                <Select
+                  options={restaurants}
+                  value={restaurants.find(restaurant => restaurant.value === restaurantName)}
+                  onChange={option => setRestaurantName(option.value)}
+                  placeholder="Select a Restaurant"
+                  isSearchable
+                />
+              </div>
+
+            
+
               <button type="submit">
                 RESERVE NOW <span><HiOutlineArrowNarrowRight /></span>
               </button>
