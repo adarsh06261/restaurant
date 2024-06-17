@@ -28,14 +28,18 @@ This project is a restaurant reservation system that allows users to make reserv
 
 1. **Landing Page**
 
-![alt text](image.png)
+![image](https://github.com/Prashant370/Restaurant-Reservation/assets/100296448/253032f9-dfe0-4ef4-bc1c-3114cf057afd)
+
 
 2. **Service**
 
-![alt text](image-1.png)
+![image](https://github.com/Prashant370/Restaurant-Reservation/assets/100296448/2fa6182e-0589-48cc-a163-c6434f5815f8)
+
 
 3. **Reservation Page**
-![alt text](image-2.png)
+   
+![image](https://github.com/Prashant370/Restaurant-Reservation/assets/100296448/7e56d080-1add-4828-9a89-b1f78f25c36e)
+
 
 ## Setup Instructions
 
