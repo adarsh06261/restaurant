@@ -23,6 +23,19 @@ This project is a restaurant reservation system that allows users to make reserv
 - **Frontend**: React.js, Axios, React Router, React Select, Toastify
 - **Backend**: Node.js, Express.js, MongoDB , Axios
 - **Others**: Vite (frontend development server)
+## ScreenShots
+>A graphical overview of some components of the web application,
+
+1. **Landing Page**
+
+![alt text](image.png)
+
+2. **Service**
+
+![alt text](image-1.png)
+
+3. **Reservation Page**
+![alt text](image-2.png)
 
 ## Setup Instructions
 
