@@ -28,6 +28,7 @@ This project is a restaurant reservation system that allows users to make reserv
 
 1. **Landing Page**
 
+
 ![alt text](image.png)
 
 2. **Service**
@@ -66,7 +67,7 @@ This project is a restaurant reservation system that allows users to make reserv
 3. **Start the frontend development server**
 
    ```bash
-    cd frontend  # If not already in the frontend directory
+    cd frontend  #If not already in the frontend directory
     npm run dev
 >Starts the frontend server (runs on http://localhost:3000 by default).
 
