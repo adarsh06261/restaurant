@@ -50,7 +50,7 @@ const Reservation = () => {
       console.log("Sending reservation data:", requestData);
       
       const { data } = await axios.post(
-        "http://localhost:4000/api/v1/reservation/send",
+        "  https://restaurant-backend-dwys4zugl-adarsh06261s-projects.vercel.app",
         requestData,
         {
           headers: {
