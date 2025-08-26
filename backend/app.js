@@ -10,7 +10,11 @@ dotenv.config({ path: "./config/config.env" }); // Ensure correct path to your .
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+    origin: [
+      "http://localhost:5173",
+      "http://127.0.0.1:5173",
+      "https://restaurant-git-main-adarsh06261s-projects.vercel.app"
+    ],
     methods: ["GET", "POST", "OPTIONS"],
     credentials: true,
   })
