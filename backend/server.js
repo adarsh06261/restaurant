@@ -2,7 +2,7 @@ import app from "./app.js";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
-dotenv.config({ path: "./config.env" });
+dotenv.config({ path: "./config/config.env" });
 
 const PORT = process.env.PORT || 4000;
 const MONGO_URI = process.env.MONGO_URI;
